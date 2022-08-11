@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/maqallar"
+        android:icon="@drawable/list"
+        android:title="Bo`limler" />
+    <item
+        android:id="@+id/saralanganlar"
+        android:icon="@drawable/ic_baseline_star_border_24"
+        android:title="Saralang`anlar" />
+    <item
+        android:id="@+id/izlew"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Izlew" />
+</menu>
