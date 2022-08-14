@@ -8,4 +8,8 @@ import com.example.qaraqalpaqshanaqillar.data.model.Naqil
 interface NaqilDao  {
     @Query("SELECT * FROM Categories")
     fun getAllCategories(): List<Naqil>
+
+    @Query("SELECT * FROM  Categories WHERE name LIKE :searchValue")
+    fun searchCategories(searchValue: String): List<Naqil>
+
 }

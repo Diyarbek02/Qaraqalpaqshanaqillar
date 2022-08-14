@@ -13,5 +13,4 @@ data class Naqil(
 
     @ColumnInfo(name="name")
     val name: String,
-
     )

@@ -6,15 +6,15 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Naqil")
 data class Naqillar(
-    @PrimaryKey val Id: Int,
+    @PrimaryKey val id: Int,
 
     @ColumnInfo(name="naqil")
-    val type: String,
+    val naqil: String,
 
     @ColumnInfo(name="type")
-    val name: Int,
+    val type: Int,
 
     @ColumnInfo(name="favourites")
-    val favourites: Int,
+    var favourites: Int,
 
     )

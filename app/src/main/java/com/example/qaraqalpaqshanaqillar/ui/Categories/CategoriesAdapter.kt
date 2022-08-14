@@ -30,19 +30,19 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewH
         holder.populateModel(models[position])
     }
 
-    inner class CategoriesViewHolder(private val binding: ItemCategoriesBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class CategoriesViewHolder(private val binding: ItemCategoriesBinding) : RecyclerView.ViewHolder(binding.root) {
+
         fun populateModel(naqil: Naqil) {
             binding.tvCategories.text = naqil.name
-            itemView.setOnClickListener {
+            binding.parent.setOnClickListener {
                 onClick.invoke(naqil)
             }
         }
     }
 
-    var onClick: (naqil: Naqil) -> Unit = {}
+    var onClick: (Naqil) -> Unit = {}
 
-    fun itemClick(onClick1: (naqil: Naqil) -> Unit) {
-
+    fun itemClick(onClick1: (Naqil) -> Unit) {
+        this.onClick = onClick1
     }
 }

@@ -5,19 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.SearchView
+    <EditText
         android:id="@+id/searchView"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="40dp"
         android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"
         android:background="@drawable/bg_white_rounded"
-        app:iconifiedByDefault="false"
-        android:queryHint="Kategoriyalar boyinsha izlew"
-        app:queryBackground="@null"
+        android:paddingStart="16dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView
