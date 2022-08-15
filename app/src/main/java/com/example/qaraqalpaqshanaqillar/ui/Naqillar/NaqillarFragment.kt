@@ -27,7 +27,6 @@ class NaqillarFragment : Fragment(R.layout.fragment_naqillar) {
             naqil.favourites = 1 - naqil.favourites
             dao.updateNaqil(naqil)
         }
-
     }
 
     private fun setData(type: Int) {

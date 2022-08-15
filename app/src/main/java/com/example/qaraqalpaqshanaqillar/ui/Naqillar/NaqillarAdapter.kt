@@ -24,7 +24,7 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
         return NaqillarViewHolder(binding)
     }
 
-    override fun getItemCount() = models.size
+    override fun getItemCount(): Int = models.size
 
     override fun onBindViewHolder(holder: NaqillarViewHolder, position: Int) {
         holder.populateModel(models[position])
@@ -32,8 +32,6 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
 
     inner class NaqillarViewHolder(private val binding: ItemNaqillarBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun populateModel(naqillar: Naqillar) {
-            binding.tvTitle.text = naqillar.naqil
             fun populateModel(naqillar: Naqillar) {
                 binding.apply {
                     tvTitle.text = naqillar.naqil
@@ -53,7 +51,6 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
                         }
                     }
                 }
-        }
     }
 }
 

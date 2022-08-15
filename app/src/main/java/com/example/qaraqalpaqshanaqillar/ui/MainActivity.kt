@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val bottom_navigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottom_navigation.setOnItemSelectedListener { item ->
             var fragment: Fragment
-            when(item.itemId){
+            when (item.itemId) {
                 R.id.maqallar -> {
                     fragment = CategoriesFragment()
                     loadFragment(fragment)
@@ -47,11 +47,11 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
             }
-
         }
     }
 
-    private fun loadFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }

@@ -15,6 +15,6 @@ data class Naqillar(
     val type: Int,
 
     @ColumnInfo(name="favourites")
-    var favourites: Int,
+    var favourites: Int
 
     )
