@@ -33,11 +33,17 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
                 adapter.models = newList
             }
         }
+        adapter.setOnClick { naqil ->
+            naqil.favourites = 1 - naqil.favourites
+            dao.updateNaqil(naqil)
+        }
         setData()
+
     }
 
     private fun setData() {
         val data = dao.getAllNaqillar()
         adapter.models = data
     }
+
 }

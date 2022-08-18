@@ -29,13 +29,11 @@ abstract class NaqilDatabase : RoomDatabase() {
                     "NaqilMaqal.db"
                 )
                     .createFromAsset("NaqilMaqal.db")
-                    .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build()
                 INSTANCE = db
                 return db
             }
-
         }
     }
 

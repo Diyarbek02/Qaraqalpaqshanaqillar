@@ -23,6 +23,12 @@ class FavouritesFragment: Fragment(R.layout.fragment_favourites) {
 
         binding.apply {
             adapter.models = dao.getFavouritesNaqillar()
+            recyclerViewFav.adapter=adapter
+        }
+
+        adapter.setOnClick { naqil ->
+            naqil.favourites = 1 - naqil.favourites
+            dao.updateNaqil(naqil)
         }
     }
 }
