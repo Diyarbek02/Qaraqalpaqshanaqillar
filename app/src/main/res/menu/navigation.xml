@@ -3,13 +3,13 @@
     <item
         android:id="@+id/maqallar"
         android:icon="@drawable/list"
-        android:title="Bo`limler" />
+        android:title="@string/bolimler" />
     <item
         android:id="@+id/saralanganlar"
         android:icon="@drawable/ic_baseline_star_border_24"
-        android:title="Saralang`anlar" />
+        android:title="@string/saralanganlar" />
     <item
         android:id="@+id/izlew"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title="Izlew" />
+        android:title="@string/izlew" />
 </menu>

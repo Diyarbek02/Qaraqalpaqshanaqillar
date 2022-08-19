@@ -37,7 +37,7 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
                     tvTitle.text = naqillar.naqil
 
                     if (naqillar.favourites == 1) {
-                        ivFavourite.setImageResource(R.drawable.favourite)
+                        ivFavourite.setImageResource(R.drawable.favourtite)
                     }else {
                         ivFavourite.setImageResource(R.drawable.fav)
                     }
@@ -45,7 +45,7 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
                     ivFavourite.setOnClickListener{
                         onClick(naqillar)
                         if (naqillar.favourites == 1) {
-                            ivFavourite.setImageResource(R.drawable.favourite)
+                            ivFavourite.setImageResource(R.drawable.favourtite)
                         }else {
                             ivFavourite.setImageResource(R.drawable.fav)
                         }

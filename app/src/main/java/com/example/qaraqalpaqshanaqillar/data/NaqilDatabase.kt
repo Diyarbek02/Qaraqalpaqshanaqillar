@@ -9,7 +9,7 @@ import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
 import com.example.qaraqalpaqshanaqillar.data.model.Naqil
 import com.example.qaraqalpaqshanaqillar.data.model.Naqillar
 
-@Database(entities = [Naqil::class, Naqillar::class], version = 3)
+@Database(entities = [Naqil::class, Naqillar::class], version = 2)
 abstract class NaqilDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE: NaqilDatabase? = null

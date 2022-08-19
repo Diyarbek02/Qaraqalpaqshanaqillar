@@ -17,7 +17,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingBottom="80dp"
+        android:paddingBottom="70dp"
         android:id="@+id/recyclerView_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

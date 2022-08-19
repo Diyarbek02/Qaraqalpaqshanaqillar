@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Qaraqalpaqsha naqillar</string>
+    <string name="bolimler">Бөлимлер</string>
+    <string name="saralanganlar">Сараланғанлар</string>
+    <string name="izlew">Излеў</string>
 </resources>

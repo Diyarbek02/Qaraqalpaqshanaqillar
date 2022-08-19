@@ -38,7 +38,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
                 tvTitle.text = naqillar.naqil
 
                 if (naqillar.favourites == 1) {
-                    ivFavourite.setImageResource(R.drawable.favourite)
+                    ivFavourite.setImageResource(R.drawable.favourtite)
                 }else {
                     ivFavourite.setImageResource(R.drawable.fav)
                 }
@@ -46,7 +46,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
                 ivFavourite.setOnClickListener{
                     onClick(naqillar)
                     if (naqillar.favourites == 1) {
-                        ivFavourite.setImageResource(R.drawable.favourite)
+                        ivFavourite.setImageResource(R.drawable.favourtite)
                     }else {
                         ivFavourite.setImageResource(R.drawable.fav)
                     }
