@@ -3,4 +3,9 @@
     <string name="bolimler">Бөлимлер</string>
     <string name="saralanganlar">Сараланғанлар</string>
     <string name="izlew">Излеў</string>
+    <string name="categories_search_value">Бөлимлер бойынша излеу</string>
+    <string name="search_all">Бәрше нақыллар бойынша излеу</string>
+    <string name="no_fav_string">Сараланғанларда хешнәрсе жоқ</string>
+    <string name="info">Инфо</string>
+    <string name="info_text">Bul dastur Texnopos IT Mektebi oqiwshisi Nisanbaev Diyarbek tarepinen jaratildi.</string>
 </resources>

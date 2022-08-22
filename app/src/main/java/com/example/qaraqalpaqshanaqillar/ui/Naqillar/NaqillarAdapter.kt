@@ -30,29 +30,30 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
         holder.populateModel(models[position])
     }
 
-    inner class NaqillarViewHolder(private val binding: ItemNaqillarBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class NaqillarViewHolder(private val binding: ItemNaqillarBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-            fun populateModel(naqillar: Naqillar) {
-                binding.apply {
-                    tvTitle.text = naqillar.naqil
+        fun populateModel(naqillar: Naqillar) {
+            binding.apply {
+                tvTitle.text = naqillar.naqil
 
+                if (naqillar.favourites == 1) {
+                    ivFavourite.setImageResource(R.drawable.favourtite)
+                } else {
+                    ivFavourite.setImageResource(R.drawable.fav)
+                }
+
+                ivFavourite.setOnClickListener {
+                    onClick(naqillar)
                     if (naqillar.favourites == 1) {
                         ivFavourite.setImageResource(R.drawable.favourtite)
-                    }else {
+                    } else {
                         ivFavourite.setImageResource(R.drawable.fav)
                     }
-
-                    ivFavourite.setOnClickListener{
-                        onClick(naqillar)
-                        if (naqillar.favourites == 1) {
-                            ivFavourite.setImageResource(R.drawable.favourtite)
-                        }else {
-                            ivFavourite.setImageResource(R.drawable.fav)
-                        }
-                    }
                 }
+            }
+        }
     }
-}
 
     private var onClick: (naqil: Naqillar) -> Unit = {}
     fun setOnClick(onClick: (naqil: Naqillar) -> Unit) {

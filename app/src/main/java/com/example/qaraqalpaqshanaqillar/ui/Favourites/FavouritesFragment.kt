@@ -10,7 +10,7 @@ import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentFavouritesBinding
 import com.example.qaraqalpaqshanaqillar.ui.Naqillar.NaqillarAdapter
 
-class FavouritesFragment: Fragment(R.layout.fragment_favourites) {
+class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
     private lateinit var binding: FragmentFavouritesBinding
     private val adapter = NaqillarAdapter()
     private lateinit var dao: NaqillarDao
@@ -23,7 +23,7 @@ class FavouritesFragment: Fragment(R.layout.fragment_favourites) {
 
         binding.apply {
             adapter.models = dao.getFavouritesNaqillar()
-            recyclerViewFav.adapter=adapter
+            recyclerViewFav.adapter = adapter
         }
 
         adapter.setOnClick { naqil ->

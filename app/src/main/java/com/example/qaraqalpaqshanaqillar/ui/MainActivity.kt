@@ -9,6 +9,7 @@ import com.example.qaraqalpaqshanaqillar.ui.Favourites.FavouritesFragment
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.ui.Search.FragmentSearch
 import com.example.qaraqalpaqshanaqillar.databinding.ActivityMainBinding
+import com.example.qaraqalpaqshanaqillar.ui.info.FragmentInfo
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +40,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.izlew -> {
                     fragment = FragmentSearch()
+                    loadFragment(fragment)
+                    true
+                }
+                R.id.info -> {
+                    fragment = FragmentInfo()
                     loadFragment(fragment)
                     true
                 }
