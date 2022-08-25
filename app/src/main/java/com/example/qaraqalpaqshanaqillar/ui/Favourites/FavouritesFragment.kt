@@ -3,7 +3,6 @@ package com.example.qaraqalpaqshanaqillar.ui.Favourites
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.example.qaraqalpaqshanaqillar.ui.Categories.CategoriesText
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
