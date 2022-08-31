@@ -37,20 +37,20 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
             binding.apply {
                 tvTitle.text = naqillar.naqil
 
-                if (naqillar.favourites == 1) {
-                    ivFavourite.setImageResource(R.drawable.favourtite)
-                }else {
-                    ivFavourite.setImageResource(R.drawable.fav)
-                }
-
-                ivFavourite.setOnClickListener{
-                    onClick(naqillar)
-                    if (naqillar.favourites == 1) {
-                        ivFavourite.setImageResource(R.drawable.favourtite)
-                    }else {
-                        ivFavourite.setImageResource(R.drawable.fav)
-                    }
-                }
+//                if (naqillar.favourites == 1) {
+//                    ivFavourite.setImageResource(R.drawable.favourtite)
+//                }else {
+//                    ivFavourite.setImageResource(R.drawable.fav)
+//                }
+//
+//                ivFavourite.setOnClickListener{
+//                    onClick(naqillar)
+//                    if (naqillar.favourites == 1) {
+//                        ivFavourite.setImageResource(R.drawable.favourtite)
+//                    }else {
+//                        ivFavourite.setImageResource(R.drawable.fav)
+//                    }
+//                }
             }
         }
     }

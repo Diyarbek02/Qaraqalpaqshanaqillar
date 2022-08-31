@@ -1,18 +1,13 @@
 package com.example.qaraqalpaqshanaqillar.ui.Search
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.example.qaraqalpaqshanaqillar.ui.Naqillar.NaqillarAdapter
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
-import com.example.qaraqalpaqshanaqillar.data.model.Naqil
-import com.example.qaraqalpaqshanaqillar.data.model.Naqillar
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentSearchBinding
 
 class FragmentSearch : Fragment(R.layout.fragment_search) {
@@ -31,6 +26,7 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
                 val searchValue = editable.toString()
                 val newList = dao.searchNaqillar("%$searchValue%")
                 adapter.models = newList
+                binding.textNoValue.isVisible = newList.isEmpty()
             }
         }
         adapter.setOnClick { naqil ->

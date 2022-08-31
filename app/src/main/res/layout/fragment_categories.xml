@@ -39,4 +39,16 @@
         app:layout_constraintTop_toBottomOf="@id/searchView"
         tools:listitem="@layout/item_categories" />
 
+    <TextView
+        android:id="@+id/text_no_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        android:layout_marginTop="48dp"
+        android:textSize="16dp"
+        android:visibility="gone"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

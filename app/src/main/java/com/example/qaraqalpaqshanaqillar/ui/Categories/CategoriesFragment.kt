@@ -1,9 +1,8 @@
 package com.example.qaraqalpaqshanaqillar.ui.Categories
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.qaraqalpaqshanaqillar.R
@@ -38,6 +37,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                     val searchValue = editable.toString()
                     val newList = dao.searchCategories("%$searchValue%")
                     adapter.models = newList
+                    binding.textNoValue.isVisible = newList.isEmpty()
                 }
             }
         }

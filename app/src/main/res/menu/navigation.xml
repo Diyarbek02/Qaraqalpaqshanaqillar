@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/maqallar"
+        android:id="@+id/categoriesFragment"
         android:icon="@drawable/list"
         android:title="@string/bolimler" />
     <item
-        android:id="@+id/saralanganlar"
+        android:id="@+id/favouritesFragment"
         android:icon="@drawable/ic_baseline_star_border_24"
         android:title="@string/saralanganlar" />
     <item
-        android:id="@+id/izlew"
+        android:id="@+id/fragmentSearch"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/izlew" />
     <item
-        android:id="@+id/info"
+        android:id="@+id/fragmentInfo"
         android:icon="@drawable/info"
         android:title="@string/info"/>
 </menu>
