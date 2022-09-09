@@ -2,12 +2,16 @@ package com.example.qaraqalpaqshanaqillar.ui.Naqillar
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
+import com.example.qaraqalpaqshanaqillar.data.model.Naqillar
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentNaqillarBinding
 import com.example.qaraqalpaqshanaqillar.ui.Categories.CategoriesFragment
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class NaqillarFragment : Fragment(R.layout.fragment_naqillar) {
     private lateinit var binding: FragmentNaqillarBinding
@@ -26,11 +30,22 @@ class NaqillarFragment : Fragment(R.layout.fragment_naqillar) {
         adapter.setOnClick { naqil ->
             naqil.favourites = 1 - naqil.favourites
             dao.updateNaqil(naqil)
+                .subscribeOn(Schedulers.io())
+                .subscribe()
         }
     }
 
     private fun setData(type: Int) {
-        val data = dao.getSelectedNaqillar(type)
-        adapter.models = data
+        dao.getSelectedNaqillar(type)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    adapter.models = it
+                },
+                {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
+            )
     }
 }

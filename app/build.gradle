@@ -41,6 +41,12 @@ dependencies {
     def room_version = "2.4.3"
     def nav_version = "2.5.1"
 
+    //RecyclerView
+    def recyclerview_version = "1.1.0-beta03"
+    implementation"androidx.recyclerview:recyclerview:$recyclerview_version"
+    def material_version = "1.1.0-alpha09"
+    implementation"com.google.android.material:material:$material_version"
+
     //Lottie
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
@@ -61,6 +67,9 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-
+    //RxJava
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
+    implementation "io.reactivex.rxjava3:rxjava:3.0.2"
+    implementation "androidx.room:room-rxjava3:$room_version"
 
 }

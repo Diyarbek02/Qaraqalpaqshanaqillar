@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.model.Naqillar
 import com.example.qaraqalpaqshanaqillar.databinding.ItemNaqillarBinding
+import kotlinx.android.synthetic.main.item_naqillar.view.*
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
@@ -36,6 +37,27 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
         fun populateModel(naqillar: Naqillar) {
             binding.apply {
                 tvTitle.text = naqillar.naqil
+
+                val isFavourite = naqillar.favourites == 1
+
+                if (isFavourite) {
+                    itemView.lottie_fav.progress = 0.50f
+                }else {
+                    itemView.lottie_fav.progress = 0f
+                }
+
+                itemView.lottie_fav.setOnClickListener {
+                    onClick(naqillar)
+                    itemView.lottie_fav.apply {
+                        if (naqillar.favourites == 1) {
+                            speed = 1f
+                        }else {
+                            speed = -1.7f
+                            setMinAndMaxFrame(0, 25)
+                        }
+                        playAnimation()
+                    }
+                }
 
 //                if (naqillar.favourites == 1) {
 //                    ivFavourite.setImageResource(R.drawable.favourtite)

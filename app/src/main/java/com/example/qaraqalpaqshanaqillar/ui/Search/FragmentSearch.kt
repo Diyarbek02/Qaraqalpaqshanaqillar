@@ -2,6 +2,7 @@ package com.example.qaraqalpaqshanaqillar.ui.Search
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentSearchBinding
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class FragmentSearch : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
@@ -24,9 +27,18 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         binding.searchView.addTextChangedListener {
             it?.let { editable ->
                 val searchValue = editable.toString()
-                val newList = dao.searchNaqillar("%$searchValue%")
-                adapter.models = newList
-                binding.textNoValue.isVisible = newList.isEmpty()
+                dao.searchNaqillar("%$searchValue%")
+                    .observeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        {
+                            adapter.models = it
+                        },
+                        {
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        }
+                    )
+                binding.textNoValue.isVisible = adapter.models.isEmpty()
             }
         }
         adapter.setOnClick { naqil ->
@@ -38,8 +50,17 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
     }
 
     private fun setData() {
-        val data = dao.getAllNaqillar()
-        adapter.models = data
+        dao.getAllNaqillar()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    adapter.models = it
+                },
+                {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
+            )
     }
 
 }
