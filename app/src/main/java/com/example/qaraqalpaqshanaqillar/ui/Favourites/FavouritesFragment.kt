@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentFavouritesBinding
 import com.example.qaraqalpaqshanaqillar.ui.Naqillar.NaqillarAdapter
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
     private lateinit var binding: FragmentFavouritesBinding
@@ -24,17 +26,16 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         dao = NaqilDatabase.getInstance(requireContext()).naqildao()
 
         binding.apply {
-            dao.getFavouritesNaqillar()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    {
-                        adapter.models = it
-                    },
-                    {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+            lifecycleScope.launch {
+                try {
+                    val data = dao.getFavouritesNaqillar()
+                    withContext(Dispatchers.Main) {
+                        adapter.models = data
                     }
-                )
+                }catch (e: Exception) {
+                    Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
             recyclerViewFav.adapter = adapter
         }
 

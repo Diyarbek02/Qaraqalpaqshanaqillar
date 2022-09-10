@@ -11,20 +11,20 @@ import io.reactivex.rxjava3.core.Observable
 @Dao
 interface NaqillarDao {
     @Query("SELECT * FROM Naqil")
-    fun getAllNaqillar(): Observable<List<Naqillar>>
+    suspend fun getAllNaqillar():  List<Naqillar>
 
     @Query("SELECT * FROM Naqil WHERE type = :type")
-    fun getSelectedNaqillar(type: Int): Observable<List<Naqillar>>
+    suspend fun getSelectedNaqillar(type: Int): List<Naqillar>
 
     @Query("SELECT * FROM Naqil WHERE favourites = 1")
-    fun getFavouritesNaqillar(): Observable<List<Naqillar>>
+    suspend fun getFavouritesNaqillar(): List<Naqillar>
 
     @Query("SELECT * FROM Naqil WHERE naqil Like :searchValue ")
-    fun searchNaqillar(searchValue: String): Observable<List<Naqillar>>
+    suspend fun searchNaqillar(searchValue: String): List<Naqillar>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateNaqil(naqil: Naqillar) : Completable
+    fun updateNaqil(naqil: Naqillar)
 
     @Update
-    fun updateQuestion(naqil: Naqillar): Completable
+    fun updateQuestion(naqil: Naqillar)
 }

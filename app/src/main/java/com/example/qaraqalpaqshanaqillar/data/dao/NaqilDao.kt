@@ -8,8 +8,8 @@ import io.reactivex.rxjava3.core.Observable
 @Dao
 interface NaqilDao  {
     @Query("SELECT * FROM Categories")
-    fun getAllCategories(): Observable<List<Naqil>>
+    suspend fun getAllCategories(): List<Naqil>
 
     @Query("SELECT * FROM  Categories WHERE name LIKE :searchValue")
-    fun searchCategories(searchValue: String): Observable<List<Naqil>>
+    suspend fun searchCategories(searchValue: String): List<Naqil>
 }
