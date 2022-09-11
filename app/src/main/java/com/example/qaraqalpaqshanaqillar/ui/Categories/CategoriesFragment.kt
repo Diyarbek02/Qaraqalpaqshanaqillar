@@ -56,13 +56,13 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                             val data = dao.searchCategories("%$searchValue%")
                             withContext(Dispatchers.Main) {
                                 adapter.models = data
+                                binding.textNoValue.isVisible = data.isEmpty()
                             }
                         }catch (e: Exception){
                             Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
 
                         }
                     }
-                    binding.textNoValue.isVisible = adapter.models.isEmpty()
                 }
             }
         }

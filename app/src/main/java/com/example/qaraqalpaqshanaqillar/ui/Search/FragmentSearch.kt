@@ -37,13 +37,14 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
                         val data = dao.searchNaqillar("%$searchValue%")
                         withContext(Dispatchers.Main) {
                             adapter.models = data
+                            binding.textNoValue.isVisible = data.isEmpty()
                         }
                     }catch (e: Exception) {
                         Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
 
                     }
                 }
-                binding.textNoValue.isVisible = adapter.models.isEmpty()
+
             }
         }
         adapter.setOnClick { naqil ->
