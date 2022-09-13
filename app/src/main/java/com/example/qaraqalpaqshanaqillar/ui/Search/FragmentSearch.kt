@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.qaraqalpaqshanaqillar.MainViewModel
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
@@ -21,28 +22,22 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
     private val adapter = SearchAdapter()
     private lateinit var dao: NaqillarDao
+    private lateinit var viewModel: MainViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dao = NaqilDatabase.getInstance(requireContext()).naqildao()
+        viewModel = MainViewModel(dao)
         binding = FragmentSearchBinding.bind(view)
         binding.recyclerViewNaqillar.adapter = adapter
         binding.searchView.addTextChangedListener {
             it?.let { editable ->
                 val searchValue = editable.toString()
 
-                lifecycleScope.launch {
-                    try {
-                        val data = dao.searchNaqillar("%$searchValue%")
-                        withContext(Dispatchers.Main) {
-                            adapter.models = data
-                            binding.textNoValue.isVisible = data.isEmpty()
-                        }
-                    }catch (e: Exception) {
-                        Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-
-                    }
+                viewModel.searchNaqillar(searchValue)
+                viewModel.naqillar.observe(viewLifecycleOwner) {
+                    adapter.models = it
                 }
 
             }
@@ -56,17 +51,11 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
     }
 
     private fun setData() {
-        lifecycleScope.launch{
-            try {
-                val data = dao.getAllNaqillar()
-                withContext(Dispatchers.Main) {
-                    adapter.models = data
-                }
-            }catch (e: Exception) {
-                Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-
-            }
+        viewModel.getAllNaqillar()
+        viewModel.naqillar.observe(viewLifecycleOwner) {
+            adapter.models = it
         }
+
     }
 
 }
