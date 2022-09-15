@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.qaraqalpaqshanaqillar.BottomNavFragment
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.databinding.ActivityMainBinding
 
@@ -19,14 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        loadFragment(CategoriesFragment())
-
-        /** Jetpack nav */
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
-        val navController = navHostFragment.navController
-        binding.bottomNav.setupWithNavController(navController)
-
+        loadFragment(BottomNavFragment())
 
 //        val bottom_navigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
 //        bottom_navigation.setOnItemSelectedListener { item ->
@@ -61,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+        supportFragmentManager.beginTransaction().replace(R.id.bottom_nav_container, fragment)
             .commit()
     }
 }

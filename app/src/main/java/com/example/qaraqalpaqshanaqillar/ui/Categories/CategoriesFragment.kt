@@ -73,7 +73,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
             val naqillarFragment = NaqillarFragment()
             naqillarFragment.arguments = bundle
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, naqillarFragment)
+                .replace(R.id.full_container, naqillarFragment)
                 .addToBackStack(naqillarFragment::class.java.simpleName)
                 .commit()
         }
