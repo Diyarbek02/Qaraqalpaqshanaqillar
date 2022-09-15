@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.qaraqalpaqshanaqillar.R
+import com.example.qaraqalpaqshanaqillar.SecondViewModel
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentSearchBinding
@@ -21,6 +22,7 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
     private val adapter = SearchAdapter()
     private lateinit var dao: NaqillarDao
+    private val viewModel: SecondViewModel by lazy { SecondViewModel(dao) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,18 +34,7 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
             it?.let { editable ->
                 val searchValue = editable.toString()
 
-                lifecycleScope.launch {
-                    try {
-                        val data = dao.searchNaqillar("%$searchValue%")
-                        withContext(Dispatchers.Main) {
-                            adapter.models = data
-                            binding.textNoValue.isVisible = data.isEmpty()
-                        }
-                    }catch (e: Exception) {
-                        Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-
-                    }
-                }
+                viewModel.searchNaqillar(searchValue)
 
             }
         }
@@ -53,19 +44,17 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         }
         setData()
 
+        setUpObservers()
     }
 
-    private fun setData() {
-        lifecycleScope.launch{
-            try {
-                val data = dao.getAllNaqillar()
-                withContext(Dispatchers.Main) {
-                    adapter.models = data
-                }
-            }catch (e: Exception) {
-                Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
 
-            }
+    private fun setData() {
+        viewModel.getAllNaqillar()
+    }
+
+    private fun setUpObservers() {
+        viewModel.naqillar.observe(viewLifecycleOwner) {
+            adapter.models = it
         }
     }
 
