@@ -44,7 +44,7 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
 
                 if (isFavourite) {
                     itemView.lottie_fav.progress = 0.50f
-                }else {
+                } else {
                     itemView.lottie_fav.progress = 0f
                 }
 
@@ -54,40 +54,13 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
                         if (naqillar.favourites == 1) {
                             speed = 1f
 
-                        }else {
+                        } else {
                             speed = -1.7f
                             setMinAndMaxFrame(0, 25)
                         }
                         playAnimation()
                     }
                 }
-
-//                if (naqillar.favourites == 1) {
-//                    ivFavourite.setImageResource(R.drawable.favourtite)
-//                } else {
-//                    ivFavourite.setImageResource(R.drawable.fav)
-//                }
-//
-//                ivFavourite.setOnClickListener {
-//                    onClick(naqillar)
-//                    if (naqillar.favourites == 1) {
-//                        ivFavourite.setImageResource(R.drawable.favourtite)
-//                    } else {
-//                        ivFavourite.setImageResource(R.drawable.fav)
-//                    }
-//                }
-
-//                itemView.lottie_fav.setOnClickListener {
-//                    onClick(naqillar)
-//                    if (!isFavourite) {
-//                        itemView.lottie_fav.speed = 1f
-//                        itemView.lottie_fav.playAnimation()
-//                    }else {
-//                        itemView.lottie_fav.speed = -1.7f
-//                        itemView.lottie_fav.setMinAndMaxFrame(0, 22)
-//                        itemView.lottie_fav.playAnimation()
-//                    }
-//                }
             }
         }
     }

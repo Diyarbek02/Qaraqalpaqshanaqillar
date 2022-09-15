@@ -39,9 +39,8 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
                             adapter.models = data
                             binding.textNoValue.isVisible = data.isEmpty()
                         }
-                    }catch (e: Exception) {
+                    } catch (e: Exception) {
                         Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-
                     }
                 }
 
@@ -56,17 +55,15 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
     }
 
     private fun setData() {
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             try {
                 val data = dao.getAllNaqillar()
                 withContext(Dispatchers.Main) {
                     adapter.models = data
                 }
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-
             }
         }
     }
-
 }

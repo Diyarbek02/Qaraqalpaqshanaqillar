@@ -42,7 +42,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
                 if (isFavourite) {
                     itemView.lottie_fav.progress = 0.50f
-                }else {
+                } else {
                     itemView.lottie_fav.progress = 0f
                 }
 
@@ -51,31 +51,17 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
                     itemView.lottie_fav.apply {
                         if (naqillar.favourites == 1) {
                             speed = 1f
-                        }else {
+                        } else {
                             speed = -1.7f
                             setMinAndMaxFrame(0, 25)
                         }
                         playAnimation()
                     }
                 }
-
-//                if (naqillar.favourites == 1) {
-//                    ivFavourite.setImageResource(R.drawable.favourtite)
-//                }else {
-//                    ivFavourite.setImageResource(R.drawable.fav)
-//                }
-//
-//                ivFavourite.setOnClickListener{
-//                    onClick(naqillar)
-//                    if (naqillar.favourites == 1) {
-//                        ivFavourite.setImageResource(R.drawable.favourtite)
-//                    }else {
-//                        ivFavourite.setImageResource(R.drawable.fav)
-//                    }
-//                }
             }
         }
     }
+
     private var onClick: (naqil: Naqillar) -> Unit = {}
     fun setOnClick(onClick: (naqil: Naqillar) -> Unit) {
         this.onClick = onClick

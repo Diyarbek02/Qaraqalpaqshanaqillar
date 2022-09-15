@@ -19,8 +19,14 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         window.apply {
-            setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+            setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
 
             decorView.apply {
                 systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
@@ -41,4 +47,4 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }, 4000)
     }
-    }
+}

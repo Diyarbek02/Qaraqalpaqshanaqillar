@@ -19,39 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         loadFragment(BottomNavFragment())
-
-//        val bottom_navigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
-//        bottom_navigation.setOnItemSelectedListener { item ->
-//            val fragment: Fragment
-//            when (item.itemId) {
-//                R.id.maqallar -> {
-//                    fragment = CategoriesFragment()
-//                    loadFragment(fragment)
-//                    true
-//                }
-//                R.id.saralanganlar -> {
-//                    fragment = FavouritesFragment()
-//                    loadFragment(fragment)
-//                    true
-//                }
-//                R.id.izlew -> {
-//                    fragment = FragmentSearch()
-//                    loadFragment(fragment)
-//                    true
-//                }
-//                R.id.info -> {
-//                    fragment = FragmentInfo()
-//                    loadFragment(fragment)
-//                    true
-//                }
-//
-//                else -> {
-//                    false
-//                }
-//            }
-//        }
     }
 
     private fun loadFragment(fragment: Fragment) {

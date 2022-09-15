@@ -21,7 +21,6 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentFavouritesBinding.bind(view)
         dao = NaqilDatabase.getInstance(requireContext()).naqildao()
 
@@ -32,7 +31,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
                     withContext(Dispatchers.Main) {
                         adapter.models = data
                     }
-                }catch (e: Exception) {
+                } catch (e: Exception) {
                     Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
             }

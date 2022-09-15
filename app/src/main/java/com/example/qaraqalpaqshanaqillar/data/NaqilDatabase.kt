@@ -29,7 +29,6 @@ abstract class NaqilDatabase : RoomDatabase() {
                     "NaqilMaqal.db"
                 )
                     .createFromAsset("NaqilMaqal.db")
-                    .allowMainThreadQueries()
                     .build()
                 INSTANCE = db
                 return db
