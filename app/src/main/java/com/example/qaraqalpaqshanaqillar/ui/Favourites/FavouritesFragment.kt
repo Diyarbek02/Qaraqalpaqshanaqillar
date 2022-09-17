@@ -40,7 +40,9 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
 
         adapter.setOnClick { naqil ->
             naqil.favourites = 1 - naqil.favourites
-            dao.updateNaqil(naqil)
+            lifecycleScope.launch {
+                dao.updateNaqil(naqil)
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ interface NaqillarDao {
     suspend fun searchNaqillar(searchValue: String): List<Naqillar>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateNaqil(naqil: Naqillar)
+    suspend fun updateNaqil(naqil: Naqillar)
 
     @Update
     fun updateQuestion(naqil: Naqillar)

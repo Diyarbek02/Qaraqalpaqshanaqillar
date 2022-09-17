@@ -32,9 +32,6 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         binding = FragmentCategoriesBinding.bind(view)
 
         binding.apply {
-
-            recyclerViewCategories.adapter = adapter
-
             lifecycleScope.launch {
                 try {
                     val data = dao.getAllCategories()
@@ -43,9 +40,9 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                     }
                 }catch (e: Exception) {
                     Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-
                 }
             }
+
 
             searchView.addTextChangedListener {
                 it?.let { editable ->
@@ -60,11 +57,11 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                             }
                         }catch (e: Exception){
                             Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-
                         }
                     }
                 }
             }
+            recyclerViewCategories.adapter = adapter
         }
 
         adapter.itemClick {
