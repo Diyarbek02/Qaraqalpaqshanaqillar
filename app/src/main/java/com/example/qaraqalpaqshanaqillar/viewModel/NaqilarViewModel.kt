@@ -1,6 +1,5 @@
 package com.example.qaraqalpaqshanaqillar.viewModel
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +13,6 @@ import kotlinx.coroutines.withContext
 class NaqilarViewModel(private val naqillarDao: NaqillarDao): ViewModel() {
     private var mutableNaqillar: MutableLiveData<List<Naqillar>> = MutableLiveData()
     val naqillar: LiveData<List<Naqillar>> get() =mutableNaqillar
-
 
     fun getAllNaqillar() {
         viewModelScope.launch {
@@ -71,6 +69,4 @@ class NaqilarViewModel(private val naqillarDao: NaqillarDao): ViewModel() {
             }
         }
     }
-
-
 }

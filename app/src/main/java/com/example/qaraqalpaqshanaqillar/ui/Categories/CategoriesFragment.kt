@@ -2,20 +2,15 @@ package com.example.qaraqalpaqshanaqillar.ui.Categories
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqilDao
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentCategoriesBinding
 import com.example.qaraqalpaqshanaqillar.ui.Naqillar.NaqillarFragment
 import com.example.qaraqalpaqshanaqillar.viewModel.NaqilViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     private lateinit var binding: FragmentCategoriesBinding
