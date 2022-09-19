@@ -11,6 +11,8 @@ import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
 import com.example.qaraqalpaqshanaqillar.data.model.Naqillar
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentNaqillarBinding
 import com.example.qaraqalpaqshanaqillar.ui.Categories.CategoriesFragment
+import com.example.qaraqalpaqshanaqillar.viewModel.NaqilViewModel
+import com.example.qaraqalpaqshanaqillar.viewModel.NaqilarViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,7 @@ class NaqillarFragment : Fragment(R.layout.fragment_naqillar) {
     private lateinit var binding: FragmentNaqillarBinding
     private val adapter = NaqillarAdapter()
     private lateinit var dao: NaqillarDao
+    private val viewModel: NaqilarViewModel by lazy { NaqilarViewModel(dao) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,18 +40,15 @@ class NaqillarFragment : Fragment(R.layout.fragment_naqillar) {
                 dao.updateNaqil(naqil)
             }
         }
+        setUpObservers()
     }
 
     private fun setData(type: Int) {
-        lifecycleScope.launch{
-            try {
-                val data =  dao.getSelectedNaqillar(type)
-                withContext(Dispatchers.Main) {
-                    adapter.models = data
-                }
-            }catch (e: Exception) {
-                Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-            }
+        viewModel.getSelectedNaqillar(type)
+    }
+    private fun setUpObservers() {
+        viewModel.naqillar.observe(this) {
+            adapter.models = it
         }
     }
 }

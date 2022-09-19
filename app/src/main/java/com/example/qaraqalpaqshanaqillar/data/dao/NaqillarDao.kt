@@ -23,6 +23,4 @@ interface NaqillarDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateNaqil(naqil: Naqillar)
 
-    @Update
-    fun updateQuestion(naqil: Naqillar)
 }

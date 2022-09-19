@@ -10,6 +10,7 @@ import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentFavouritesBinding
 import com.example.qaraqalpaqshanaqillar.ui.Naqillar.NaqillarAdapter
+import com.example.qaraqalpaqshanaqillar.viewModel.NaqilarViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,6 +19,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
     private lateinit var binding: FragmentFavouritesBinding
     private val adapter = NaqillarAdapter()
     private lateinit var dao: NaqillarDao
+    private val viewModel: NaqilarViewModel by lazy { NaqilarViewModel(dao) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,16 +27,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         dao = NaqilDatabase.getInstance(requireContext()).naqildao()
 
         binding.apply {
-            lifecycleScope.launch {
-                try {
-                    val data = dao.getFavouritesNaqillar()
-                    withContext(Dispatchers.Main) {
-                        adapter.models = data
-                    }
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-                }
-            }
+            viewModel.getFavouritesNaqillar()
             recyclerViewFav.adapter = adapter
         }
 
@@ -43,6 +36,12 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
             lifecycleScope.launch {
                 dao.updateNaqil(naqil)
             }
+        }
+        setUpObservers()
+    }
+    private fun setUpObservers() {
+        viewModel.naqillar.observe(this) {
+            adapter.models = it
         }
     }
 }

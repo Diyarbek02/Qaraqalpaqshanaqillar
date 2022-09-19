@@ -10,7 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import com.example.qaraqalpaqshanaqillar.R
 import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqillarDao
+import com.example.qaraqalpaqshanaqillar.data.model.Naqillar
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentSearchBinding
+import com.example.qaraqalpaqshanaqillar.viewModel.NaqilViewModel
+import com.example.qaraqalpaqshanaqillar.viewModel.NaqilarViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +24,7 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
     private val adapter = SearchAdapter()
     private lateinit var dao: NaqillarDao
+    private val viewModel: NaqilarViewModel by lazy { NaqilarViewModel(dao) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,19 +35,7 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         binding.searchView.addTextChangedListener {
             it?.let { editable ->
                 val searchValue = editable.toString()
-
-                lifecycleScope.launch {
-                    try {
-                        val data = dao.searchNaqillar("%$searchValue%")
-                        withContext(Dispatchers.Main) {
-                            adapter.models = data
-                            binding.textNoValue.isVisible = data.isEmpty()
-                        }
-                    } catch (e: Exception) {
-                        Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-                    }
-                }
-
+                viewModel.searchNaqillar(searchValue)
             }
         }
         adapter.setOnClick { naqil ->
@@ -53,18 +45,18 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
             }
         }
         setData()
+        setUpObservers()
     }
 
     private fun setData() {
-        lifecycleScope.launch {
-            try {
-                val data = dao.getAllNaqillar()
-                withContext(Dispatchers.Main) {
-                    adapter.models = data
-                }
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-            }
+        viewModel.getAllNaqillar()
+    }
+
+    private fun setUpObservers() {
+        viewModel.naqillar.observe(viewLifecycleOwner) {
+            adapter.models = it
+            binding.textNoValue.isVisible = it.isEmpty()
         }
     }
 }
+

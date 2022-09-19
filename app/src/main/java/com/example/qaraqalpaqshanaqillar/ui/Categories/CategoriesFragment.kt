@@ -12,6 +12,7 @@ import com.example.qaraqalpaqshanaqillar.data.NaqilDatabase
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqilDao
 import com.example.qaraqalpaqshanaqillar.databinding.FragmentCategoriesBinding
 import com.example.qaraqalpaqshanaqillar.ui.Naqillar.NaqillarFragment
+import com.example.qaraqalpaqshanaqillar.viewModel.NaqilViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -20,6 +21,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     private lateinit var binding: FragmentCategoriesBinding
     private val adapter = CategoriesAdapter()
     private lateinit var dao: NaqilDao
+    private val viewModel: NaqilViewModel by lazy { NaqilViewModel(dao) }
 
     companion object {
         const val TYPE = "type"
@@ -32,33 +34,13 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         binding = FragmentCategoriesBinding.bind(view)
 
         binding.apply {
-            lifecycleScope.launch {
-                try {
-                    val data = dao.getAllCategories()
-                    withContext(Dispatchers.Main) {
-                        adapter.models = data
-                    }
-                }catch (e: Exception) {
-                    Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-                }
-            }
-
+            viewModel.getAllCategoroies()
 
             searchView.addTextChangedListener {
                 it?.let { editable ->
                     val searchValue = editable.toString()
 
-                    lifecycleScope.launch{
-                        try {
-                            val data = dao.searchCategories("%$searchValue%")
-                            withContext(Dispatchers.Main) {
-                                adapter.models = data
-                                binding.textNoValue.isVisible = data.isEmpty()
-                            }
-                        }catch (e: Exception){
-                            Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                   viewModel.searchCategories(searchValue)
                 }
             }
             recyclerViewCategories.adapter = adapter
@@ -73,6 +55,14 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                 .replace(R.id.full_container, naqillarFragment)
                 .addToBackStack(naqillarFragment::class.java.simpleName)
                 .commit()
+        }
+        setUpObservers()
+    }
+
+    private fun setUpObservers() {
+        viewModel.naqil.observe(viewLifecycleOwner) {
+            adapter.models = it
+            binding.textNoValue.isVisible = it.isEmpty()
         }
     }
 }
