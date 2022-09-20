@@ -1,7 +1,5 @@
 package com.example.qaraqalpaqshanaqillar.viewModel
 
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.lifecycle.*
 import com.example.qaraqalpaqshanaqillar.data.dao.NaqilDao
 import com.example.qaraqalpaqshanaqillar.data.model.Naqil

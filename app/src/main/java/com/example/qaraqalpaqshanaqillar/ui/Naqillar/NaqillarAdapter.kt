@@ -12,8 +12,7 @@ import com.example.qaraqalpaqshanaqillar.databinding.ItemNaqillarBinding
 import kotlinx.android.synthetic.main.item_naqillar.view.*
 
 class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>() {
-
-    var models: List<Naqillar> = listOf()
+    var models = listOf<Naqillar>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
