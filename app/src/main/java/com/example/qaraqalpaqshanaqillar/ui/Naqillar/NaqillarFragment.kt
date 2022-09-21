@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 
 class NaqillarFragment : Fragment(R.layout.fragment_naqillar) {
     private lateinit var binding: FragmentNaqillarBinding
-    private val adapter = NaqillarAdapter()
+    private val adapter by lazy { NaqillarAdapter() }
     private lateinit var dao: NaqillarDao
     private val viewModel: NaqilarViewModel by lazy { NaqilarViewModel(dao) }
 
@@ -47,7 +47,7 @@ class NaqillarFragment : Fragment(R.layout.fragment_naqillar) {
         viewModel.getSelectedNaqillar(type)
     }
     private fun setUpObservers() {
-        viewModel.naqillar.observe(this) {
+        viewModel.naqillar.observe(viewLifecycleOwner) {
             adapter.models = it
         }
     }

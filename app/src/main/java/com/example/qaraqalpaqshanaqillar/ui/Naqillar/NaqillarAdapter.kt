@@ -12,6 +12,8 @@ import com.example.qaraqalpaqshanaqillar.databinding.ItemNaqillarBinding
 import kotlinx.android.synthetic.main.item_naqillar.view.*
 
 class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>() {
+    private var oldList = emptyList<Naqillar>()
+
     var models = listOf<Naqillar>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
@@ -32,10 +34,18 @@ class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>
         holder.populateModel(models[position])
     }
 
+    fun setData(newNaqillarList: List<Naqillar>) {
+        val diffUtil = MyDiffUtil(oldList, newNaqillarList)
+        val diffResults =  DiffUtil.calculateDiff(diffUtil)
+        oldList = newNaqillarList
+        diffResults.dispatchUpdatesTo(this)
+    }
+
     inner class NaqillarViewHolder(private val binding: ItemNaqillarBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun populateModel(naqillar: Naqillar) {
+
             binding.apply {
                 tvTitle.text = naqillar.naqil
 
