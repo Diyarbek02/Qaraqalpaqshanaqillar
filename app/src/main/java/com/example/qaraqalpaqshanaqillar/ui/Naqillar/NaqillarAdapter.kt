@@ -13,11 +13,13 @@ import kotlinx.android.synthetic.main.item_naqillar.view.*
 
 class NaqillarAdapter : RecyclerView.Adapter<NaqillarAdapter.NaqillarViewHolder>() {
 
-    var models: List<Naqillar> = listOf()
+    var models = listOf<Naqillar>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
+            val callBack = MyDiffUtil(models, value)
+            val diffResult = DiffUtil.calculateDiff(callBack)
+            diffResult.dispatchUpdatesTo(this)
             field = value
-            notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NaqillarViewHolder {
