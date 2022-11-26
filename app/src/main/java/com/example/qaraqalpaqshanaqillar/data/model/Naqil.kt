@@ -7,10 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Categories")
 data class Naqil(
     @PrimaryKey val Id: Int,
-
-    @ColumnInfo(name="type")
     val type: Int,
-
-    @ColumnInfo(name="name")
     val name: String,
     )

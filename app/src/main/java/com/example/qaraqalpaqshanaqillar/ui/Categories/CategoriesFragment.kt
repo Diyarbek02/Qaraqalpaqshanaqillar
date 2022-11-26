@@ -17,9 +17,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CategoriesFragment : Fragment(R.layout.fragment_categories) {
-    private lateinit var binding: FragmentCategoriesBinding
     private val adapter = CategoriesAdapter()
     private lateinit var dao: NaqilDao
+    private val binding by lazy { FragmentCategoriesBinding.inflate(layoutInflater) }
 
     companion object {
         const val TYPE = "type"
@@ -28,8 +28,6 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dao = NaqilDatabase.getInstance(requireContext()).dao()
-
-        binding = FragmentCategoriesBinding.bind(view)
 
         binding.apply {
             lifecycleScope.launch {

@@ -18,15 +18,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class FragmentSearch : Fragment(R.layout.fragment_search) {
-    private lateinit var binding: FragmentSearchBinding
     private val adapter = SearchAdapter()
     private lateinit var dao: NaqillarDao
+    private val binding by lazy { FragmentSearchBinding.inflate(layoutInflater) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dao = NaqilDatabase.getInstance(requireContext()).naqildao()
-        binding = FragmentSearchBinding.bind(view)
         binding.recyclerViewNaqillar.adapter = adapter
         binding.searchView.addTextChangedListener {
             it?.let { editable ->

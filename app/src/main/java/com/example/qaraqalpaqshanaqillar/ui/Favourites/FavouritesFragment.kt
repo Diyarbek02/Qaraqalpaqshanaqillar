@@ -15,13 +15,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
-    private lateinit var binding: FragmentFavouritesBinding
     private val adapter = NaqillarAdapter()
     private lateinit var dao: NaqillarDao
+    private val binding by lazy { FragmentFavouritesBinding.inflate(layoutInflater) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFavouritesBinding.bind(view)
         dao = NaqilDatabase.getInstance(requireContext()).naqildao()
 
         binding.apply {

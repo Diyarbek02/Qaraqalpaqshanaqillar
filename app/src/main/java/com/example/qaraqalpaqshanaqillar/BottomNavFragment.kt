@@ -8,11 +8,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.qaraqalpaqshanaqillar.databinding.BottomNavBinding
 
 class BottomNavFragment: Fragment(R.layout.bottom_nav) {
-    private lateinit var binding: BottomNavBinding
+    private val binding by lazy { BottomNavBinding.inflate(layoutInflater) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = BottomNavBinding.bind(view)
 
         /** Jetpack nav */
         val navHostFragment =

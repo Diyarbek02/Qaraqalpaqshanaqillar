@@ -18,15 +18,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class NaqillarFragment : Fragment(R.layout.fragment_naqillar) {
-    private lateinit var binding: FragmentNaqillarBinding
     private val adapter = NaqillarAdapter()
     private lateinit var dao: NaqillarDao
+    private val binding by lazy { FragmentNaqillarBinding.inflate(layoutInflater) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dao = NaqilDatabase.getInstance(requireContext()).naqildao()
-        binding = FragmentNaqillarBinding.bind(view)
         val bundle = arguments?.getInt(CategoriesFragment.TYPE) ?: 1
         binding.recyclerViewNaqillar.adapter = adapter
         setData(bundle)
