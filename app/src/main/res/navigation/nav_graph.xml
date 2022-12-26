@@ -18,12 +18,23 @@
         android:id="@+id/favouritesFragment"
         android:name="com.example.qaraqalpaqshanaqillar.ui.Favourites.FavouritesFragment"
         android:label="FavouritesFragment"
-        tools:layout="@layout/fragment_favourites"/>
+        tools:layout="@layout/fragment_favourites">
+        <action
+            android:id="@+id/action_favouritesFragment_to_fragmentInfo"
+            app:destination="@id/fragmentInfo" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentInfo"
         android:name="com.example.qaraqalpaqshanaqillar.ui.info.FragmentInfo"
         android:label="FragmentInfo"
-        tools:layout="@layout/fragment_info"/>
+        tools:layout="@layout/fragment_info">
+        <action
+            android:id="@+id/action_fragmentInfo_to_fragmentSearch"
+            app:destination="@id/fragmentSearch" />
+        <action
+            android:id="@+id/action_fragmentInfo_to_naqillarFragment"
+            app:destination="@id/naqillarFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentSearch"
         android:name="com.example.qaraqalpaqshanaqillar.ui.Search.FragmentSearch"
